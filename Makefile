@@ -9,6 +9,8 @@ PROD=firal
 
 #HDRS= $(shell ls *.h)
 SRCS= $(shell ls *.cpp)
+SRCS+= $(shell ls elements/*.cpp)
+SRCS+= $(shell ls svg/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 
@@ -23,3 +25,5 @@ $(PROD): $(OBJS)
 clean:
 	rm -f $(PROD)
 	rm -f *.o
+	rm -f elements/*.o
+	rm -f svg/*.o
