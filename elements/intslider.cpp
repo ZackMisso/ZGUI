@@ -4,11 +4,11 @@ IntSlider::IntSlider() {
   // to be implemented
 }
 
-IntSlider::IntSlider(int xpos,int ypos,int width,int height) : GUIObject(xpos,ypos,width,height) {
+IntSlider::IntSlider(int xpos,int ypos,int width,int height) : Slider(xpos,ypos,width,height) {
   // to be implemented
 }
 
-IntSlider::IntSlider(int xpos,int ypos,int width,int height,int tabIndex) : GUIObject(xpos,ypos,width,height,tabIndex) {
+IntSlider::IntSlider(int xpos,int ypos,int width,int height,int tabIndex) : Slider(xpos,ypos,width,height,tabIndex) {
   // to be implemented
 }
 

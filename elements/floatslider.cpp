@@ -4,11 +4,11 @@ FloatSlider::FloatSlider() {
   // to be implemented
 }
 
-FloatSlider::FloatSlider(int xpos,int ypos,int width,int height) : GUIObject(xpos,ypos,width,height) {
+FloatSlider::FloatSlider(int xpos,int ypos,int width,int height) : Slider(xpos,ypos,width,height) {
   // to be implemented
 }
 
-FloatSlider::FloatSlider(int xpos,int ypos,int width,int height,int tabIndex) : GUIObject(xpos,ypos,width,height,tabIndex) {
+FloatSlider::FloatSlider(int xpos,int ypos,int width,int height,int tabIndex) : Slider(xpos,ypos,width,height,tabIndex) {
   // to be implemented
 }
 

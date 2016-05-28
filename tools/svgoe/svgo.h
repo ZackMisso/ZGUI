@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../dataStructures/array.h"
-#include "../svg/svgPrimitive.h"
+#include "../../dataStructures/array.h"
+#include "../../svg/svgPrimitive.h"
 
 class SVGObject {
 private:
@@ -13,4 +13,4 @@ public:
   Array<SVGPrimitive*>* getPrimitives();
   // setter methods
   void setPrimitives(Array<SVGPrimitive*>* param);
-}
+};

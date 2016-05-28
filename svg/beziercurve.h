@@ -1,23 +1,25 @@
 #pragma once
 
+#include <glm/vec2.hpp>
 #include "../dataStructures/array.h"
-#include "../dataStructures/point2.h"
+
+using namespace glm;
 
 class BezierCurve {
 private:
-  Array<Point2>* controlPoints;
+  Array<vec2>* controlPoints;
   bool continuous;
   bool wrapAround;
 public:
   BezierCurve();
-  BezierCurve(Array<Point2>* pts);
+  BezierCurve(Array<vec2>* pts);
   ~BezierCurve();
   // getter methods
-  Array<Point2>* getControlPoints();
+  Array<vec2>* getControlPoints();
   bool getContinuous();
   bool getWrapAround();
   // setter methods
-  void setControlPoints(Array<Point2>* param);
+  void setControlPoints(Array<vec2>* param);
   void setContinuous(bool param);
   void setWrapAround(bool param);
 };

@@ -9,6 +9,6 @@ SVGObject::~SVGObject() {
     delete primitives->removeLast();
 }
 
-Array<SVGPrimitive*>* SVGPrimitive::getPrimitives() { return primitives; }
+Array<SVGPrimitive*>* SVGObject::getPrimitives() { return primitives; }
 
-void SVGPrimitive::setPrimitives(Array<SVGPrimitive*>* param) { primitives = param; }
+void SVGObject::setPrimitives(Array<SVGPrimitive*>* param) { primitives = param; }

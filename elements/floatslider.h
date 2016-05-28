@@ -7,7 +7,7 @@ private:
   float min;
   float max;
   float val;
-  float* prt;
+  float* ptr;
 public:
   FloatSlider();
   FloatSlider(int xpos,int ypos,int width,int height);

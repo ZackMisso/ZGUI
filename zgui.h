@@ -8,11 +8,11 @@ class ZGUI {
 private:
   static ZGUI* instance;
   GLFWwindow* application;
-  void* renderCallback;
-  void* keyCallback;
-  void* mouseMoveCallback;
-  void* mouseClickCallback;
-  void* errorCallback;
+  void (*ZGUIRenderCallback)(void);
+  void (*ZGUIMouseMoveCallback)(int,int);
+  void (*ZGUIKeyCallback)(GLFWwindow*,int,int,int,int);
+  void (*ZGUIMouseClickCallback)(int,int,int,int);
+  void (*ZGUIErrorCallback)(int,const char*);
   int major;
   int minor;
   int applicationHeight;
@@ -23,18 +23,18 @@ private:
 public:
   ~ZGUI();
   // singleton methods
-  ZGUI* getInstance();
-  void initialize(int maj,int min,float swap);
-  void destroy();
+  static ZGUI* getInstance();
+  static void initialize(int maj,int min,float swap);
+  static void destroy();
   // methods
   void initGLFW();
   void applicationLoop();
   // setter methods
-  void setRenderCallback(void* param);
-  void setKeyCallback(void* param);
-  void setMouseMoveCallback(void* param);
-  void setMouseClickCallback(void* param);
-  void setErrorCallback(void* param);
+  void setRenderCallback(void (*param)(void));
+  void setMouseMoveCallback(void (*param)(int,int));
+  void setKeyCallback(void (*param)(GLFWwindow*,int,int,int,int));
+  void setMouseClickCallback(void (*param)(int,int,int,int));
+  void setErrorCallback(void (*param)(int,const char*));
   void setMajor(int param);
   void setMinor(int param);
   void setApplicationHeight(int param);
