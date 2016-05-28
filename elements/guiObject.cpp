@@ -1,6 +1,7 @@
 #include "guiObject.h"
 
 GUIObject::GUIObject() {
+  shape = 0x0;
   xpos = 0;
   ypos = 0;
   width = 32;
@@ -10,6 +11,7 @@ GUIObject::GUIObject() {
 }
 
 GUIObject::GUIObject(int x,int y,int w,int h) {
+  shape = 0x0;
   xpos = x;
   ypos = y;
   width = w;
@@ -19,12 +21,17 @@ GUIObject::GUIObject(int x,int y,int w,int h) {
 }
 
 GUIObject::GUIObject(int x,int y,int w,int h,int tab) {
+  shape = 0x0;
   xpos = x;
   ypos = y;
   width = w;
   height = h;
   tabIndex = tab;
   isShowing = true;
+}
+
+GUIObject::~GUIObject() {
+  delete shape;
 }
 
 void GUIObject::render() {
@@ -56,6 +63,7 @@ void GUIObject::highlight() {
 int GUIObject::getTabIndex() { return tabIndex; }
 bool GUIObject::getIsShowing() { return isShowing; }
 
+void GUIObject::setShape(SVGObject* param) { shape = param; }
 void GUIObject::setXpos(int param) { xpos = param; }
 void GUIObject::setYpos(int param) { ypos = param; }
 void GUIObject::setWidth(int param) { width = param; }

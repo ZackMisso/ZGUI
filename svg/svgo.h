@@ -4,13 +4,10 @@
 #include "svgPrimitive.h"
 
 class SVGObject {
-private:
+protected:
   Array<SVGPrimitive*>* primitives;
 public:
   SVGObject();
   ~SVGObject();
-  // getter methods
-  Array<SVGPrimitive*>* getPrimitives();
-  // setter methods
-  void setPrimitives(Array<SVGPrimitive*>* param);
+  virtual void render();
 };

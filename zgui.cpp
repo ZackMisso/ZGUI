@@ -7,11 +7,17 @@ using namespace std;
 ZGUI* ZGUI::instance = 0x0;
 
 ZGUI::ZGUI(int maj,int min,float swap) {
+  objects = new Array<GUIObject*>();
+  containers = new Array<GUIContainer*>();
+  selectedObject = 0x0;
+  selectedContainer = 0x0;
+  application = 0x0;
   ZGUIRenderCallback = 0x0;
   ZGUIKeyCallback = 0x0;
   ZGUIMouseMoveCallback = 0x0;
   ZGUIMouseClickCallback = 0x0;
   ZGUIErrorCallback = 0x0;
+  clearColor = vec3(0);
   major = maj;
   minor = min;
   swapInterval = swap;
@@ -57,22 +63,51 @@ void ZGUI::initGLFW() {
   glfwTerminate();
 }
 
+void ZGUI::addGUIObject(GUIObject* obj) {
+  objects->add(obj);
+}
+
+void ZGUI::addGUIContainer(GUIContainer* cont) {
+  containers->add(cont);
+}
+
 void ZGUI::destroy() {
   if(instance)
     delete instance;
 }
 
 void ZGUI::applicationLoop() {
-  //cout << "Calling Loop" << endl;
   while (!glfwWindowShouldClose(application))
   {
     // Main Loop
-    //cout << "Before rendering" << endl;
     ZGUIRenderCallback();
-    //cout << "After Rendering" << endl;
+    display();
     glfwSwapBuffers(application);
     glfwPollEvents();
   }
+}
+
+void ZGUI::display() {
+  for(int i=0;i<containers->getSize();i++)
+    containers->get(i)->render();
+  for(int i=0;i<objects->getSize();i++)
+    objects->get(i)->render();
+}
+
+void ZGUI::keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
+  // to be implemented
+}
+
+void ZGUI::mouseMove(int x,int y) {
+  // to be implemented
+}
+
+void ZGUI::mouseClick(int button,int state,int x,int y) {
+  // to be implemented
+}
+
+void ZGUI::error(int error, const char* description) {
+  // to be implemented
 }
 
 void ZGUI::setRenderCallback(void (*param)(void)) { ZGUIRenderCallback = param; }
@@ -80,6 +115,7 @@ void ZGUI::setMouseMoveCallback(void (*param)(int,int)) { ZGUIMouseMoveCallback 
 void ZGUI::setKeyCallback(void (*param)(GLFWwindow*,int,int,int,int)) { ZGUIKeyCallback = param; }
 void ZGUI::setMouseClickCallback(void (*param)(int,int,int,int)) { ZGUIMouseClickCallback = param; }
 void ZGUI::setErrorCallback(void (*param)(int,const char*)) { ZGUIErrorCallback = param; }
+void ZGUI::setClearColor(vec3 param) { clearColor = param; }
 void ZGUI::setMajor(int param) { major = param; }
 void ZGUI::setMinor(int param) { minor = param; }
 void ZGUI::setApplicationWidth(int param) { applicationWidth = param; }
