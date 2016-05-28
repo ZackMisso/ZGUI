@@ -12,6 +12,12 @@ BezierCurve::BezierCurve(Array<vec2>* pts) {
   wrapAround = false;
 }
 
+BezierCurve::~BezierCurve() {
+  while(controlPoints->getSize())
+    controlPoints->removeLast();
+  delete controlPoints;
+}
+
 Array<vec2>* BezierCurve::getControlPoints() { return controlPoints; }
 bool BezierCurve::getContinuous() { return continuous; }
 bool BezierCurve::getWrapAround() { return wrapAround; }

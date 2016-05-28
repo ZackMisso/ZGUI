@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../dataStructures/array.h"
-#include "../../svg/svgPrimitive.h"
+#include "../dataStructures/array.h"
+#include "svgPrimitive.h"
 
 class SVGObject {
 private:

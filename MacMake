@@ -12,10 +12,12 @@ PROD_OE=firalObjectEditor
 SRCS= $(shell ls *.cpp)
 SRCS+= $(shell ls elements/*.cpp)
 SRCS+= $(shell ls svg/*.cpp)
+SRCS+= $(shell ls dataStructures/*.cpp)
 
 SRCS_OE= $(shell ls elements/*.cpp)
 SRCS_OE+= $(shell ls svg/*.cpp)
 SRCS_OE+= $(shell ls tools/svgoe/*.cpp)
+SRCS_OE+= $(shell ls dataStructures/*.cpp)
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 OBJS_OE= $(patsubst %.cpp, %.o, $(SRCS_OE))
@@ -40,3 +42,4 @@ clean:
 	rm -f svg/*.o
 	rm -f tools/*.o
 	rm -f tools/svgoe/*.o
+	rm -f dataStructures/*.o

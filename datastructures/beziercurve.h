@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/vec2.hpp>
-#include "../dataStructures/array.h"
+#include "array.h"
 
 using namespace glm;
 
