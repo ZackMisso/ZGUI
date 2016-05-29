@@ -13,7 +13,8 @@ public:
   ~SVGPolygon();
   virtual void render();
   virtual vec2 getPosition();
-  virtual rect getBB();
+  virtual rect calculateBB();
+  virtual void initializeBasic();
   // getter methods
   Array<vec2>* getPoints();
   vec3 getColor();

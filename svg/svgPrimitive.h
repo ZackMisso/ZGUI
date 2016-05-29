@@ -7,11 +7,27 @@
 
 using namespace glm;
 
+enum AlignmentType {
+  ALIGNMENT_CENTER,
+  ALIGNMENT_TOP_RIGHT,
+  ALIGNMENT_TOP_LEFT,
+  ALIGNMENT_BOT_RIGHT,
+  ALIGNMENT_BOT_LEFT
+};
+
 class SVGPrimitive {
-private:
+protected:
+  AlignmentType alignment;
+  rect bb;
+  bool hasMoved;
 public:
   SVGPrimitive();
   virtual void render() = 0;
   virtual vec2 getPosition() = 0;
-  virtual rect getBB() = 0;
+  virtual rect calculateBB() = 0;
+  virtual void initializeBasic() = 0;
+  // getter methods
+  rect getBB();
+  // setter methods
+  void setAlignment(AlignmentType param);
 };

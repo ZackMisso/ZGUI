@@ -1,5 +1,5 @@
 #include "svgPrimitive.h"
 
 SVGPrimitive::SVGPrimitive() {
-  // to be implemented
+  alignment = ALIGNMENT_CENTER;
 }

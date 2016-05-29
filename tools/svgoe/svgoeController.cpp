@@ -54,6 +54,10 @@ void SVGOEController::render() {
       // to be implemented
       break;
     }
+    case EDITING_POLYGON: {
+      // to be implemented
+      break;
+    }
     case CREATING: {
       // to be implemented
       break;
@@ -75,6 +79,10 @@ void SVGOEController::handleClick() {
       break;
     }
     case EDITING_LINE: {
+      // to be implemented
+      break;
+    }
+    case EDITING_POLYGON: {
       // to be implemented
       break;
     }
@@ -113,14 +121,20 @@ void SVGOEController::handleKey(int key) {
         // to be implemented
         break;
       }
+      case EDITING_POLYGON: {
+        // to be implemented
+        break;
+      }
       case CREATING: {
         if(key == GLFW_KEY_C) {
           // create a curve
           SVGCurve* curve = new SVGCurve();
+          curve->initializeBasic();
           currentPrimitives->add(curve);
         } else if(key == GLFW_KEY_L) {
           // create a line
           SVGLine* line = new SVGLine();
+          line->initializeBasic();
           currentPrimitives->add(line);
         } else if(key == GLFW_KEY_O) {
           // create an object
@@ -129,6 +143,7 @@ void SVGOEController::handleKey(int key) {
         } else if(key == GLFW_KEY_P) {
           // create a polygon
           SVGPolygon* polygon = new SVGPolygon();
+          polygon->initializeBasic();
           currentPrimitives->add(polygon);
         } else if(key == GLFW_KEY_S) {
           // save and create object

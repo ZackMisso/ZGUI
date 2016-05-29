@@ -15,7 +15,8 @@ public:
   SVGLine(vec2 one,vec2 two);
   virtual void render();
   virtual vec2 getPosition();
-  virtual rect getBB();
+  virtual rect calculateBB();
+  virtual void initializeBasic();
   // getter methods
   vec2 getFirst();
   vec2 getSecond();

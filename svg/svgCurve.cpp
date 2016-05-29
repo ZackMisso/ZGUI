@@ -17,9 +17,17 @@ vec2 SVGCurve::getPosition() {
   return vec2();
 }
 
-rect SVGCurve::getBB() {
+void SVGCurve::calculateBB() {
   // to be implemented
-  return rect();
+  bb = rect();
+  hasMoved = false;
+}
+
+void SVGCurve::initializeBasic() {
+  curve->getControlPoints()->add(vec2(-0.25,0));
+  curve->getControlPoints()->add(vec2(0.25,0));
+  curve->setWrapAround(true);
+  curve->setContinuous(true);
 }
 
 BezierCurve* SVGCurve::getCurve() { return curve; }

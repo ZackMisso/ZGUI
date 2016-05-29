@@ -1,9 +1,12 @@
 #include "polygonEditData.h"
 
 PolygonEditData::PolygonEditData() {
-  // to be implemented
+  polygon = 0x0;
+  selectedPoint = vec2(0);
+  selectedPointIndex = -1;
+  addingPoints = true;
 }
 
 PolygonEditData::~PolygonEditData() {
-  // to be implemented
+  polygon = 0x0;
 }

@@ -1,9 +1,13 @@
 #include "lineEditData.h"
 
 LineEditData::LineEditData() {
-  // to be implemented
+  line = 0x0;
+  selectedPoint = vec2(0);
+  selectedColor = vec3(0);
+  firstPointSelected = false;
+  secondPointSelected = false;
 }
 
 LineEditData::~LineEditData() {
-  // to be implemented
+  line = 0x0;
 }

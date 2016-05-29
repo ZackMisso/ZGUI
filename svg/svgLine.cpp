@@ -25,9 +25,16 @@ vec2 SVGLine::getPosition() {
   return vec2();
 }
 
-rect SVGLine::getBB() {
+void SVGLine::calculateBB() {
   // to be implemented
-  return rect();
+  bb = rect();
+  hasMoved = false;
+}
+
+void SVGLine::initializeBasic() {
+  first = vec2(-0.25,0);
+  second = vec2(0.25,0);
+  lineWidth = 1;
 }
 
 vec2 SVGLine::getFirst() { return first; }
