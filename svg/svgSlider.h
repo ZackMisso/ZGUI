@@ -1,6 +1,9 @@
 #pragma once
 
 #include "svgo.h"
+#include <glm/vec3.hpp>
+
+using namespace glm;
 
 class SVGSlider : public SVGObject {
 private:

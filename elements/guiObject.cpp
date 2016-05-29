@@ -43,7 +43,7 @@ bool GUIObject::wasClicked(int x,int y) {
   return false;
 }
 
-void GUIObject::click() {
+void GUIObject::click(int x,int y) {
   // to be extended
 }
 

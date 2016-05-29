@@ -10,7 +10,7 @@ using namespace std;
 void display();
 void reshape(int w,int h);
 void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods);
-void mouseMove(int x,int y);
+void mouseMove(GLFWwindow* window,double x,double y);
 void mouseClick(int button,int state,int x,int y);
 void error(int error, const char* description);
 
@@ -43,7 +43,7 @@ void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
 	// to be implemented
 }
 
-void mouseMove(int x,int y) {
+void mouseMove(GLFWwindow* window,double x,double y) {
 	// to be implemented
 }
 

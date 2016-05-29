@@ -2,7 +2,7 @@
 
 SVGRect::SVGRect() {
   outlineColor = vec3(0);
-  fillColor = vec3(0.0,0.0,1.0);
+  fillColor = vec3(0.0f,0.0f,1.0f);
   selectedColor = fillColor;
   rounded = false;
   initRect();

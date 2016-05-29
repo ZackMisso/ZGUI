@@ -15,6 +15,7 @@ public:
   GUIObject();
   GUIObject(int xpos,int ypos,int width,int height);
   GUIObject(int xpos,int ypos,int width,int height,int tabIndex);
+  ~GUIObject();
   // extendable methods
   virtual void render();
   virtual bool wasClicked(int x,int y);

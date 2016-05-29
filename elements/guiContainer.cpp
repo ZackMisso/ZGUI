@@ -4,7 +4,7 @@ GUIContainer::GUIContainer() : GUIObject() {
   objects = new Array<GUIObject*>();
 }
 
-GUIContainer::GUIContainer(int xpos,int ypos,int width,int height) GUIObject(xpos,ypos,width,height) {
+GUIContainer::GUIContainer(int xpos,int ypos,int width,int height) : GUIObject(xpos,ypos,width,height) {
   objects = new Array<GUIObject*>();
 }
 

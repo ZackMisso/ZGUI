@@ -53,6 +53,7 @@ void ZGUI::initGLFW() {
   glfwMakeContextCurrent(application);
   //cout << "Setting Key Callback" << endl;
   glfwSetKeyCallback(application,ZGUIKeyCallback);
+  glfwSetCursorPosCallback(application,mouseMove);
   glfwGetFramebufferSize(application, &applicationWidth, &applicationHeight);
   glViewport(0,0,applicationWidth,applicationHeight);
   glfwSwapInterval(1);
@@ -88,17 +89,17 @@ void ZGUI::applicationLoop() {
 }
 
 void ZGUI::display() {
-  for(int i=0;i<containers->getSize();i++)
-    containers->get(i)->render();
-  for(int i=0;i<objects->getSize();i++)
-    objects->get(i)->render();
+  for(int i=0;i<instance->containers->getSize();i++)
+    instance->containers->get(i)->render();
+  for(int i=0;i<instance->objects->getSize();i++)
+    instance->objects->get(i)->render();
 }
 
 void ZGUI::keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
   // to be implemented
 }
 
-void ZGUI::mouseMove(int x,int y) {
+void ZGUI::mouseMove(GLFWwindow* window,double x,double y) {
   // to be implemented
 }
 
@@ -111,7 +112,7 @@ void ZGUI::error(int error, const char* description) {
 }
 
 void ZGUI::setRenderCallback(void (*param)(void)) { ZGUIRenderCallback = param; }
-void ZGUI::setMouseMoveCallback(void (*param)(int,int)) { ZGUIMouseMoveCallback = param; }
+void ZGUI::setMouseMoveCallback(void (*param)(GLFWwindow*,double,double)) { ZGUIMouseMoveCallback = param; }
 void ZGUI::setKeyCallback(void (*param)(GLFWwindow*,int,int,int,int)) { ZGUIKeyCallback = param; }
 void ZGUI::setMouseClickCallback(void (*param)(int,int,int,int)) { ZGUIMouseClickCallback = param; }
 void ZGUI::setErrorCallback(void (*param)(int,const char*)) { ZGUIErrorCallback = param; }

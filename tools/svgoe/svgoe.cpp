@@ -2,8 +2,12 @@
 
 #include <iostream>
 #include "zgui.h"
+#include "svgoeController.h"
 
 using namespace std;
+
+// editor variables
+SVGOEController* controller;
 
 // openGL methods
 void display();
@@ -23,6 +27,7 @@ int main() {
 	gui->setMouseClickCallback(mouseClick);
 	gui->setErrorCallback(error);
 	gui->initGLFW();
+  controller = new SVGOEController();
 }
 
 void display() {
