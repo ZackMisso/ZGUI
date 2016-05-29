@@ -1,5 +1,6 @@
 #pragma once
 
+#include "editData.h"
 #include "../../svg/svgo.h"
 #include "../../svg/svgPrimitive.h"
 #include "../../dataStructures/array.h"
@@ -23,6 +24,15 @@ private:
   double mouseX;
   double mouseY;
   EditMode editMode;
+  EditData* editorData;
+  //void renderCurrentObject();
+  void switchMode(int key);
+  void switchToEmpty();
+  void switchToChgObj();
+  void switchToChgPri();
+  void switchToEdC();
+  void switchToEdL();
+  void switchToCreate();
 public:
   SVGOEController();
   ~SVGOEController();

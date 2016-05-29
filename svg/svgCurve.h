@@ -3,7 +3,7 @@
 #include "svgPrimitive.h"
 #include "../dataStructures/bezierCurve.h"
 
-class SVGCurve : SVGPrimitive {
+class SVGCurve : public SVGPrimitive {
 private:
   BezierCurve* curve;
 public:

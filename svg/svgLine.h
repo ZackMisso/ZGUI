@@ -3,7 +3,7 @@
 #include "svgPrimitive.h"
 #include <glm/vec3.hpp>
 
-class SVGLine : SVGPrimitive {
+class SVGLine : public SVGPrimitive {
 private:
   vec2 first;
   vec2 second;
