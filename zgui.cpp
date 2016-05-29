@@ -54,6 +54,7 @@ void ZGUI::initGLFW() {
   //cout << "Setting Key Callback" << endl;
   glfwSetKeyCallback(application,ZGUIKeyCallback);
   glfwSetCursorPosCallback(application,mouseMove);
+  glfwSetMouseButtonCallback(application,mouseClick);
   glfwGetFramebufferSize(application, &applicationWidth, &applicationHeight);
   glViewport(0,0,applicationWidth,applicationHeight);
   glfwSwapInterval(1);
@@ -81,7 +82,6 @@ void ZGUI::applicationLoop() {
   while (!glfwWindowShouldClose(application))
   {
     // Main Loop
-    ZGUIRenderCallback();
     display();
     glfwSwapBuffers(application);
     glfwPollEvents();
@@ -89,6 +89,8 @@ void ZGUI::applicationLoop() {
 }
 
 void ZGUI::display() {
+  if(instance->ZGUIRenderCallback)
+    instance->ZGUIRenderCallback();
   for(int i=0;i<instance->containers->getSize();i++)
     instance->containers->get(i)->render();
   for(int i=0;i<instance->objects->getSize();i++)
@@ -97,24 +99,33 @@ void ZGUI::display() {
 
 void ZGUI::keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
   // to be implemented
+  if(instance->ZGUIKeyCallback)
+    instance->ZGUIKeyCallback(window,key,scancode,action,mods);
 }
 
 void ZGUI::mouseMove(GLFWwindow* window,double x,double y) {
   // to be implemented
+  if(instance->ZGUIMouseMoveCallback)
+    instance->ZGUIMouseMoveCallback(window,x,y);
 }
 
-void ZGUI::mouseClick(int button,int state,int x,int y) {
+void ZGUI::mouseClick(GLFWwindow* window,int button,int action,int mods) {
   // to be implemented
+  if(instance->ZGUIMouseClickCallback)
+    instance->ZGUIMouseClickCallback(window,button,action,mods);
 }
 
 void ZGUI::error(int error, const char* description) {
   // to be implemented
 }
 
+int ZGUI::getApplicationWidth() { return applicationWidth; }
+int ZGUI::getApplicationHeight() { return applicationHeight; }
+
 void ZGUI::setRenderCallback(void (*param)(void)) { ZGUIRenderCallback = param; }
 void ZGUI::setMouseMoveCallback(void (*param)(GLFWwindow*,double,double)) { ZGUIMouseMoveCallback = param; }
 void ZGUI::setKeyCallback(void (*param)(GLFWwindow*,int,int,int,int)) { ZGUIKeyCallback = param; }
-void ZGUI::setMouseClickCallback(void (*param)(int,int,int,int)) { ZGUIMouseClickCallback = param; }
+void ZGUI::setMouseClickCallback(void (*param)(GLFWwindow*,int,int,int)) { ZGUIMouseClickCallback = param; }
 void ZGUI::setErrorCallback(void (*param)(int,const char*)) { ZGUIErrorCallback = param; }
 void ZGUI::setClearColor(vec3 param) { clearColor = param; }
 void ZGUI::setMajor(int param) { major = param; }

@@ -1,0 +1,6 @@
+!/bin/bash
+
+make clean
+make oEditor -j4
+
+./firalObjectEditor

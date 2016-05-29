@@ -19,6 +19,7 @@ SRCS_OE= $(shell ls elements/*.cpp)
 SRCS_OE+= $(shell ls svg/*.cpp)
 SRCS_OE+= $(shell ls tools/svgoe/*.cpp)
 SRCS_OE+= $(shell ls dataStructures/*.cpp)
+SRCS_OE+= zgui.cpp
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
 OBJS_OE= $(patsubst %.cpp, %.o, $(SRCS_OE))

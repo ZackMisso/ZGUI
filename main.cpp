@@ -11,7 +11,7 @@ void display();
 void reshape(int w,int h);
 void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods);
 void mouseMove(GLFWwindow* window,double x,double y);
-void mouseClick(int button,int state,int x,int y);
+void mouseClick(GLFWwindow* window,int button,int action,int mods);
 void error(int error, const char* description);
 
 int main() {
@@ -47,7 +47,7 @@ void mouseMove(GLFWwindow* window,double x,double y) {
 	// to be implemented
 }
 
-void mouseClick(int button,int state,int x,int y) {
+void mouseClick(GLFWwindow* window,int button,int action,int mods) {
 	// to be implemented
 }
 

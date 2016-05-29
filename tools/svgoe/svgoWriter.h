@@ -1,6 +1,6 @@
 #pragma once
 
-#include "svgo.h"
+#include "../../svg/svgo.h"
 #include <string>
 
 using namespace std;

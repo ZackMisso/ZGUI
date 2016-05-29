@@ -20,7 +20,7 @@ protected:
   void (*ZGUIRenderCallback)(void);
   void (*ZGUIMouseMoveCallback)(GLFWwindow*,double,double);
   void (*ZGUIKeyCallback)(GLFWwindow*,int,int,int,int);
-  void (*ZGUIMouseClickCallback)(int,int,int,int);
+  void (*ZGUIMouseClickCallback)(GLFWwindow*,int,int,int);
   void (*ZGUIErrorCallback)(int,const char*);
   vec3 clearColor;
   int major;
@@ -34,7 +34,7 @@ protected:
   static void display();
   static void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods);
   static void mouseMove(GLFWwindow* window,double x,double y);
-  static void mouseClick(int button,int state,int x,int y);
+  static void mouseClick(GLFWwindow* window,int button,int action,int mods);
   static void error(int error, const char* description);
 public:
   ~ZGUI();
@@ -47,11 +47,14 @@ public:
   void applicationLoop();
   void addGUIObject(GUIObject* obj);
   void addGUIContainer(GUIContainer* cont);
+  // getter methods
+  int getApplicationWidth();
+  int getApplicationHeight();
   // setter methods
   void setRenderCallback(void (*param)(void));
   void setMouseMoveCallback(void (*param)(GLFWwindow*,double,double));
   void setKeyCallback(void (*param)(GLFWwindow*,int,int,int,int));
-  void setMouseClickCallback(void (*param)(int,int,int,int));
+  void setMouseClickCallback(void (*param)(GLFWwindow*,int,int,int));
   void setErrorCallback(void (*param)(int,const char*));
   void setClearColor(vec3 param);
   void setMajor(int param);

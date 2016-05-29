@@ -29,18 +29,96 @@ vec2 SVGOEController::getMousePosition() {
 }
 
 void SVGOEController::render() {
-  // to be implemeneted
+  switch(editMode) {
+    case CHANGING_OBJECTS: {
+      // to be implemented
+      break;
+    }
+    case CHANGING_PRIMITIVES: {
+      // to be implemented
+      break;
+    }
+    case EDITING_CURVE: {
+      // to be implemented
+      break;
+    }
+    case EDITING_LINE: {
+      // to be implemented
+      break;
+    }
+    case CREATING: {
+      // to be implemented
+      break;
+    }
+    case EMPTY: {
+      // to be implemented
+      break;
+    }
+    default: break;
+  }
 }
 
 void SVGOEController::handleClick() {
-  // to be implemented
+  switch(editMode) {
+    case CHANGING_OBJECTS: {
+      // to be implemented
+      break;
+    }
+    case CHANGING_PRIMITIVES: {
+      // to be implemented
+      break;
+    }
+    case EDITING_CURVE: {
+      // to be implemented
+      break;
+    }
+    case EDITING_LINE: {
+      // to be implemented
+      break;
+    }
+    case CREATING: {
+      // to be implemented
+      break;
+    }
+    case EMPTY: {
+      // to be implemented
+      break;
+    }
+    default: break;
+  }
 }
 
-void SVGOEController::handleClick(int key) {
-  // to be implemented
+void SVGOEController::handleKey(int key) {
+  switch(editMode) {
+    case CHANGING_OBJECTS: {
+      // to be implemented
+      break;
+    }
+    case CHANGING_PRIMITIVES: {
+      // to be implemented
+      break;
+    }
+    case EDITING_CURVE: {
+      // to be implemented
+      break;
+    }
+    case EDITING_LINE: {
+      // to be implemented
+      break;
+    }
+    case CREATING: {
+      // to be implemented
+      break;
+    }
+    case EMPTY: {
+      // to be implemented
+      break;
+    }
+    default: break;
+  }
 }
 
-void SVOGEController::switchToEditMode(EditMode mode) {
+void SVGOEController::switchToEditMode(EditMode mode) {
   editMode = mode;
 }
 

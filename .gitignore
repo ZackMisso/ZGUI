@@ -1,4 +1,5 @@
 *.o
+*.swp
 todo.txt
 firal
 firalObjectEditor
