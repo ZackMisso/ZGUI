@@ -15,37 +15,6 @@ void SVGPolygon::render() {
   // to be implemented
 }
 
-vec2 SVGPolygon::getPosition() {
-  if(hasMoved) {
-    calculateBB();
-  }
-  vec2 position = vec2(0);
-  switch(alignment) {
-    case ALIGNMENT_CENTER: {
-      // to be implemented
-      break;
-    }
-    case ALIGNMENT_TOP_RIGHT: {
-      // to be implemented
-      break;
-    }
-    case ALIGNMENT_TOP_LEFT: {
-      // to be implemented
-      break;
-    }
-    case ALIGNMENT_BOT_RIGHT: {
-      // to be implemented
-      break;
-    }
-    case ALIGNMENT_BOT_LEFT: {
-      // to be implemented
-      break;
-    }
-    default; break;
-  }
-  return position;
-}
-
 void SVGPolygon::calculateBB() {
   float maxX = -100.0f;
   float maxY = -100.0f;

@@ -20,14 +20,26 @@ void SVGLine::render() {
   // to be implemented
 }
 
-vec2 SVGLine::getPosition() {
-  // to be implemented
-  return vec2();
-}
-
 void SVGLine::calculateBB() {
-  // to be implemented
-  bb = rect();
+  float minX = 100.0f;
+  float minY = 100.0f;
+  float maxX = -100.0f;
+  float maxY = -100.0f;
+  if(first.x > second.x) {
+    maxX = first.x;
+    minX = second.x;
+  } else {
+    maxX = second.x;
+    minX = first.x;
+  }
+  if(first.y > second.y) {
+    maxX = first.y;
+    minX = second.y;
+  } else {
+    maxX = second.y;
+    minX = first.y;
+  }
+  bb = rect(minX,minY,maxX-minX,maxY-minY);
   hasMoved = false;
 }
 

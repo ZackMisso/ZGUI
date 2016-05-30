@@ -10,8 +10,7 @@ public:
   SVGCurve();
   ~SVGCurve();
   virtual void render();
-  virtual vec2 getPosition();
-  virtual rect calculateBB();
+  virtual void calculateBB();
   virtual void initializeBasic();
   // getter methods
   BezierCurve* getCurve();

@@ -12,8 +12,7 @@ public:
   SVGPolygon();
   ~SVGPolygon();
   virtual void render();
-  virtual vec2 getPosition();
-  virtual rect calculateBB();
+  virtual void calculateBB();
   virtual void initializeBasic();
   // getter methods
   Array<vec2>* getPoints();
