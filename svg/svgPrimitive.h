@@ -23,7 +23,7 @@ protected:
 public:
   SVGPrimitive();
   virtual void render() = 0;
-  virtual rect calculateBB() = 0;
+  virtual void calculateBB() = 0;
   virtual void initializeBasic() = 0;
   vec2 getPosition();
   // getter methods

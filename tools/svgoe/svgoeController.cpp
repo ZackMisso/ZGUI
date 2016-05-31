@@ -16,6 +16,8 @@ SVGOEController::SVGOEController() {
   mouseY = 0.0;
   editMode = EMPTY;
   editorData = 0x0;
+  currentPrimitives->add(new SVGLine());
+  currentPrimitives->get(0)->initializeBasic();
 }
 
 SVGOEController::~SVGOEController() {
@@ -68,6 +70,8 @@ void SVGOEController::render() {
     }
     default: break;
   }
+  //currentObj->render();
+  currentPrimitives->get(currentPrimitive)->render();
 }
 
 void SVGOEController::handleClick() {

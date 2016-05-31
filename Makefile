@@ -13,11 +13,13 @@ SRCS= $(shell ls *.cpp)
 SRCS+= $(shell ls elements/*.cpp)
 SRCS+= $(shell ls svg/*.cpp)
 SRCS+= $(shell ls dataStructures/*.cpp)
+SRCS+= $(shell ls shaderClasses/*.cpp)
 
 SRCS_OE= $(shell ls elements/*.cpp)
 SRCS_OE+= $(shell ls svg/*.cpp)
 SRCS_OE+= $(shell ls tools/svgoe/*.cpp)
 SRCS_OE+= $(shell ls dataStructures/*.cpp)
+SRCS_OE+= $(shell ls shaderClasses/*.cpp)
 SRCS_OE+= zgui.cpp
 
 OBJS= $(patsubst %.cpp, %.o, $(SRCS))
@@ -44,3 +46,4 @@ clean:
 	rm -f tools/*.o
 	rm -f tools/svgoe/*.o
 	rm -f dataStructures/*.o
+	rm -f shaderClasses/*.o

@@ -18,7 +18,7 @@ vec2 SVGPrimitive::getPosition() {
       break;
     }
     case ALIGNMENT_TOP_RIGHT: {
-      position = vec2(bb.pos.x+bb.dim.x.bb.pos.y+bb.dim.y);
+      position = vec2(bb.pos.x+bb.dim.x,bb.pos.y+bb.dim.y);
       break;
     }
     case ALIGNMENT_TOP_LEFT: {

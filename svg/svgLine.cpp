@@ -1,10 +1,16 @@
 #include "svgLine.h"
+#define  GLFW_INCLUDE_GL3
+#include <GLFW/glfw3.h>
+#include <OpenGL/gl3.h>
+#include <iostream>
+
+using namespace std;
 
 SVGLine::SVGLine() {
   first = vec2();
   second = vec2();
   firstColor = vec3(1);
-  secondColor = vec3(1);
+  secondColor = vec3(0);
   lineWidth = 1;
 }
 
@@ -17,7 +23,18 @@ SVGLine::SVGLine(vec2 one,vec2 two) {
 }
 
 void SVGLine::render() {
-  // to be implemented
+  // TODO :: Change to shaders
+  //cout << "Rendering Line" << endl;
+  //cout << "First: " << first.x << " " << first.y << endl;
+  //cout << "Second: " << second.x << " " << second.y << endl;
+  // THIS HAS BEEN DEPRECATED NOOOOOOO..... FUCK
+  //glColor4f(0.0f,1.0f,0.0f,1.0f);
+  //glBegin(GL_LINES);
+  //glColor4f(firstColor.x,firstColor.y,firstColor.z,1.0f);
+  //glVertex2f(first.x,first.y);
+  //glColor4f(secondColor.x,secondColor.y,secondColor.z,1.0f);
+  //glVertex2f(second.x,second.y);
+  //glEnd();
 }
 
 void SVGLine::calculateBB() {
@@ -44,6 +61,7 @@ void SVGLine::calculateBB() {
 }
 
 void SVGLine::initializeBasic() {
+  cout << "Initializing Basic" << endl;
   first = vec2(-0.25,0);
   second = vec2(0.25,0);
   lineWidth = 1;

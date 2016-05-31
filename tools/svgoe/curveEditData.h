@@ -1,7 +1,7 @@
 #pragma once
 
 #include "editData.h"
-#include "../../svg/svgCureve.hpp"
+#include "../../svg/svgCurve.h"
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
