@@ -11,6 +11,7 @@ private:
   int findCombination(int n,int r);
   int factorial(int val);
   Array<Array<Integer>*>* cache;
+  Array<Integer>* factorialCache;
 public:
   ~CombinationCache();
   static CombinationCache* getInstance();

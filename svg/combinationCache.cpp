@@ -4,14 +4,17 @@ CombinationCache* CombinationCache::instance = 0x0;
 
 CombinationCache::CombinationCache() {
   cache = new Array<Array<Integer>*>();
+  factorialCache = new Array<Integer>();
 }
 
 CombinationCache::~CombinationCache() {
+  factorialCache->clear();
   for(int i=0;i<cache->getSize();i++)
     cache->get(i)->clear();
   while(cache->getSize())
     delete cache->removeLast();
   delete cache;
+  delete factorialCache;
 }
 
 CombinationCache* CombinationCache::getInstance() {
@@ -58,8 +61,12 @@ int CombinationCache::calculateCombination(int n,int r) {
 int CombinationCache::factorial(int val) {
   if(val == 0)
     return 1;
-  int product = 1;
-  for(int i=1;i<=val;i++)
+  if(val <= factorialCache->getSize())
+    return factorialCache->get(val-1).val;
+  int product = factorialCache->get(factorialCache->getSize()-1).val;
+  for(int i=factorialCache->getSize()+1;i<=val;i++) {
     product *= i;
+    factorialCache->add(Integer(product));
+  }
   return product;
 }
