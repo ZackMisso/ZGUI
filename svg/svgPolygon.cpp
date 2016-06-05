@@ -38,6 +38,10 @@ void SVGPolygon::initializeBasic() {
   hasMoved = true;
 }
 
+void SVGPolygon::setUpRendering() {
+  // to be implemented
+}
+
 Array<vec2>* SVGPolygon::getPoints() { return points; }
 vec3 SVGPolygon::getColor() { return color; }
 

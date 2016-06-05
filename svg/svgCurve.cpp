@@ -9,6 +9,8 @@ SVGCurve::~SVGCurve() {
 }
 
 void SVGCurve::render() {
+  Array<vec2>* pts = curve->getCurve();
+
   // to be implemented
 }
 
@@ -33,6 +35,10 @@ void SVGCurve::initializeBasic() {
   curve->getControlPoints()->add(vec2(0.25,0));
   curve->setWrapAround(true);
   curve->setContinuous(true);
+}
+
+void SVGCurve::setUpRendering() {
+  // to be implemented
 }
 
 BezierCurve* SVGCurve::getCurve() { return curve; }

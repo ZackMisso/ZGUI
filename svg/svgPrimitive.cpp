@@ -4,6 +4,7 @@ SVGPrimitive::SVGPrimitive() {
   alignment = ALIGNMENT_CENTER;
   bb = rect();
   hasMoved = true;
+  renderDirty = true;
 }
 
 vec2 SVGPrimitive::getPosition() {
@@ -39,5 +40,17 @@ vec2 SVGPrimitive::getPosition() {
 }
 
 rect SVGPrimitive::getBB() { return bb; }
+VertShader* SVGPrimitive::getVert() { return vert; }
+FragShader* SVGPrimitive::getFrag() { return frag; }
+GLuint SVGPrimitive::getVertShader() { return vertShader; }
+GLuint SVGPrimitive::getFragShader() { return fragShader; }
+GLuint SVGPrimitive::getVao() { return vao; }
+GLuint SVGPrimitive::getProgram() { return program; }
 
 void SVGPrimitive::setAlignment(AlignmentType param) { alignment = param; }
+void SVGPrimitive::setVert(VertShader* param) { vert = param; }
+void SVGPrimitive::setFrag(FragShader* param) { frag = param; }
+void SVGPrimitive::setVertShader(GLuint param) { vertShader = param; }
+void SVGPrimitive::setFragShader(GLuint param) { fragShader = param; }
+void SVGPrimitive::setVao(GLuint param) { vao = param; }
+void SVGPrimitive::setProgram(GLuint param) { program = param; }

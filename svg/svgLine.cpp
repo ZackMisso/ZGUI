@@ -67,6 +67,10 @@ void SVGLine::initializeBasic() {
   lineWidth = 1;
 }
 
+void SVGLine::setUpRendering() {
+  // to be implemented
+}
+
 vec2 SVGLine::getFirst() { return first; }
 vec2 SVGLine::getSecond() { return second; }
 vec3 SVGLine::getFirstColor() { return firstColor; }

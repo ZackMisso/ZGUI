@@ -12,6 +12,7 @@ public:
   virtual void render();
   virtual void calculateBB();
   virtual void initializeBasic();
+  virtual void setUpRendering();
   // getter methods
   BezierCurve* getCurve();
   // setter methods

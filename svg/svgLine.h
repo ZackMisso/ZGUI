@@ -16,6 +16,7 @@ public:
   virtual void render();
   virtual void calculateBB();
   virtual void initializeBasic();
+  virtual void setUpRendering();
   // getter methods
   vec2 getFirst();
   vec2 getSecond();

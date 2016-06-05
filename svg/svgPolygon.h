@@ -14,6 +14,7 @@ public:
   virtual void render();
   virtual void calculateBB();
   virtual void initializeBasic();
+  virtual void setUpRendering();
   // getter methods
   Array<vec2>* getPoints();
   vec3 getColor();
