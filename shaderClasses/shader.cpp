@@ -8,7 +8,7 @@
 using namespace std;
 
 Shader::Shader(GLenum type,int len,const char* s)
-      :shaderType(type),bytes(len),shaderObj(0)
+      :shaderType(type),bytes(len),shaderObj(0),compiled(false)
 {
   source = new GLchar[bytes];
   if(source)
@@ -17,7 +17,7 @@ Shader::Shader(GLenum type,int len,const char* s)
 }
 
 Shader::Shader(GLenum type)
-      :shaderType(type),source(NULL),shaderObj(0)
+      :shaderType(type),source(NULL),shaderObj(0),compiled(false)
 { }
 
 Shader::~Shader() {
@@ -62,19 +62,25 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag) {
   GLuint fragShader;
   GLuint program;
   // create and compile vert shader
-  vertShader = glCreateShader(GL_VERTEX_SHADER);
-  const GLchar* vertSource = vert->getSource();
-  const GLint vertLength = vert->getBytes();
-  glShaderSource(vertShader,1,&vertSource,&vertLength);
-  glCompileShader(vertShader);
-  checkCompileLog(vertShader);
+  if(vert->getCompiled()) vertShader = vert->getShaderObj();
+  else {
+    vertShader = glCreateShader(GL_VERTEX_SHADER);
+    const GLchar* vertSource = vert->getSource();
+    const GLint vertLength = vert->getBytes();
+    glShaderSource(vertShader,1,&vertSource,&vertLength);
+    glCompileShader(vertShader);
+    checkCompileLog(vertShader);
+  }
   // create and compile frag shader
-  fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-  const GLchar* fragSource = frag->getSource();
-  const GLint fragLength = frag->getBytes();
-  glShaderSource(fragShader,1,&fragSource,&fragLength);
-  glCompileShader(fragShader);
-  checkCompileLog(fragShader);
+  if(frag->getCompiled()) fragShader = frag->getShaderObj();
+  else {
+    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+    const GLchar* fragSource = frag->getSource();
+    const GLint fragLength = frag->getBytes();
+    glShaderSource(fragShader,1,&fragSource,&fragLength);
+    glCompileShader(fragShader);
+    checkCompileLog(fragShader);
+  }
   // create program, attach it, and link
   program = glCreateProgram();
   glAttachShader(program,vertShader);
@@ -83,6 +89,8 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag) {
   // update the shaders
   vert->setShaderObj(vertShader);
   frag->setShaderObj(fragShader);
+  vert->setCompiled(true);
+  frag->setCompiled(true);
   return program;
 }
 
@@ -94,39 +102,46 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag,Shader* tessC,Shader* tes
   GLuint tessEShader;
   GLuint program;
   // create and compile vert shader
-  vertShader = glCreateShader(GL_VERTEX_SHADER);
-  const GLchar* vertSource = vert->getSource();
-  const GLint vertLength = vert->getBytes();
-  glShaderSource(vertShader,1,&vertSource,&vertLength);
-  glCompileShader(vertShader);
-  checkCompileLog(vertShader);
+  if(vert->getCompiled()) vertShader = vert->getShaderObj();
+  else {
+    vertShader = glCreateShader(GL_VERTEX_SHADER);
+    const GLchar* vertSource = vert->getSource();
+    const GLint vertLength = vert->getBytes();
+    glShaderSource(vertShader,1,&vertSource,&vertLength);
+    glCompileShader(vertShader);
+    checkCompileLog(vertShader);
+  }
   // create and compile frag shader
-  fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-  const GLchar* fragSource = frag->getSource();
-  const GLint fragLength = frag->getBytes();
-  glShaderSource(fragShader,1,&fragSource,&fragLength);
-  glCompileShader(fragShader);
-  checkCompileLog(fragShader);
+  if(frag->getCompiled()) fragShader = frag->getShaderObj();
+  else {
+    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+    const GLchar* fragSource = frag->getSource();
+    const GLint fragLength = frag->getBytes();
+    glShaderSource(fragShader,1,&fragSource,&fragLength);
+    glCompileShader(fragShader);
+    checkCompileLog(fragShader);
+  }
   // create and compile tessC shader
-  if(glGetError() != GL_NO_ERROR) cout << "ERROR BEFORE TESS C" << endl;
-  cout << "Tess C" << endl;
-  tessCShader = glCreateShader(GL_TESS_CONTROL_SHADER);
-  const GLchar* tessCSource = tessC->getSource();
-  const GLint tessCLength = tessC->getBytes();
-  glShaderSource(tessCShader,1,&tessCSource,&tessCLength);
-  glCompileShader(tessCShader);
-  checkCompileLog(tessCShader);
+  if(tessC->getCompiled()) tessCShader = tessC->getShaderObj();
+  else {
+    tessCShader = glCreateShader(GL_TESS_CONTROL_SHADER);
+    const GLchar* tessCSource = tessC->getSource();
+    const GLint tessCLength = tessC->getBytes();
+    glShaderSource(tessCShader,1,&tessCSource,&tessCLength);
+    glCompileShader(tessCShader);
+    checkCompileLog(tessCShader);
+  }
   // create and compile tessE shader
-  if(glGetError() != GL_NO_ERROR) cout << "ERROR BEFORE TESS E" << endl;
-  cout << "Tess E" << endl;
-  tessEShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
-  const GLchar* tessESource = tessE->getSource();
-  const GLint tessELength = tessE->getBytes();
-  glShaderSource(tessEShader,1,&tessESource,&tessELength);
-  glCompileShader(tessEShader);
-  checkCompileLog(tessEShader);
+  if(tessE->getCompiled()) tessEShader = tessE->getShaderObj();
+  else {
+    tessEShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
+    const GLchar* tessESource = tessE->getSource();
+    const GLint tessELength = tessE->getBytes();
+    glShaderSource(tessEShader,1,&tessESource,&tessELength);
+    glCompileShader(tessEShader);
+    checkCompileLog(tessEShader);
+  }
   // create program, attach it, and link
-  if(glGetError() != GL_NO_ERROR) cout << "ERROR BEFORE LINK" << endl;
   program = glCreateProgram();
   glAttachShader(program,vertShader);
   glAttachShader(program,tessCShader);
@@ -154,6 +169,10 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag,Shader* tessC,Shader* tes
   frag->setShaderObj(fragShader);
   tessC->setShaderObj(tessCShader);
   tessE->setShaderObj(tessEShader);
+  vert->setCompiled(true);
+  frag->setCompiled(true);
+  tessC->setCompiled(true);
+  tessE->setCompiled(true);
   return program;
 }
 
@@ -166,40 +185,55 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag,Shader* tessC,Shader* tes
   GLuint geomShader;
   GLuint program;
   // create and compile vert shader
-  vertShader = glCreateShader(GL_VERTEX_SHADER);
-  const GLchar* vertSource = vert->getSource();
-  const GLint vertLength = vert->getBytes();
-  glShaderSource(vertShader,1,&vertSource,&vertLength);
-  glCompileShader(vertShader);
-  checkCompileLog(vertShader);
+  if(vert->getCompiled()) vertShader = vert->getShaderObj();
+  else {
+    vertShader = glCreateShader(GL_VERTEX_SHADER);
+    const GLchar* vertSource = vert->getSource();
+    const GLint vertLength = vert->getBytes();
+    glShaderSource(vertShader,1,&vertSource,&vertLength);
+    glCompileShader(vertShader);
+    checkCompileLog(vertShader);
+  }
   // create and compile frag shader
-  fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-  const GLchar* fragSource = frag->getSource();
-  const GLint fragLength = frag->getBytes();
-  glShaderSource(fragShader,1,&fragSource,&fragLength);
-  glCompileShader(fragShader);
-  checkCompileLog(fragShader);
+  if(frag->getCompiled()) fragShader = frag->getShaderObj();
+  else {
+    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+    const GLchar* fragSource = frag->getSource();
+    const GLint fragLength = frag->getBytes();
+    glShaderSource(fragShader,1,&fragSource,&fragLength);
+    glCompileShader(fragShader);
+    checkCompileLog(fragShader);
+  }
   // create and compile tessC shader
-  tessCShader = glCreateShader(GL_TESS_CONTROL_SHADER);
-  const GLchar* tessCSource = tessC->getSource();
-  const GLint tessCLength = tessC->getBytes();
-  glShaderSource(tessCShader,1,&tessCSource,&tessCLength);
-  glCompileShader(tessCShader);
-  checkCompileLog(tessCShader);
+  if(tessC->getCompiled()) tessCShader = tessC->getShaderObj();
+  else {
+    tessCShader = glCreateShader(GL_TESS_CONTROL_SHADER);
+    const GLchar* tessCSource = tessC->getSource();
+    const GLint tessCLength = tessC->getBytes();
+    glShaderSource(tessCShader,1,&tessCSource,&tessCLength);
+    glCompileShader(tessCShader);
+    checkCompileLog(tessCShader);
+  }
   // create and compile tessE shader
-  tessEShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
-  const GLchar* tessESource = tessE->getSource();
-  const GLint tessELength = tessE->getBytes();
-  glShaderSource(tessEShader,1,&tessESource,&tessELength);
-  glCompileShader(tessEShader);
-  checkCompileLog(tessEShader);
+  if(tessE->getCompiled()) tessEShader = tessE->getShaderObj();
+  else {
+    tessEShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
+    const GLchar* tessESource = tessE->getSource();
+    const GLint tessELength = tessE->getBytes();
+    glShaderSource(tessEShader,1,&tessESource,&tessELength);
+    glCompileShader(tessEShader);
+    checkCompileLog(tessEShader);
+  }
   // create and compile geom shader
-  geomShader = glCreateShader(GL_GEOMETRY_SHADER);
-  const GLchar* geomSource = geom->getSource();
-  const GLint geomLength = geom->getBytes();
-  glShaderSource(geomShader,1,&geomSource,&geomLength);
-  glCompileShader(geomShader);
-  checkCompileLog(geomShader);
+  if(geom->getCompiled()) geomShader = geom->getShaderObj();
+  else {
+    geomShader = glCreateShader(GL_GEOMETRY_SHADER);
+    const GLchar* geomSource = geom->getSource();
+    const GLint geomLength = geom->getBytes();
+    glShaderSource(geomShader,1,&geomSource,&geomLength);
+    glCompileShader(geomShader);
+    checkCompileLog(geomShader);
+  }
   // create program, attach it, and link
   program = glCreateProgram();
   glAttachShader(program,vertShader);
@@ -213,6 +247,12 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag,Shader* tessC,Shader* tes
   frag->setShaderObj(fragShader);
   tessC->setShaderObj(tessCShader);
   tessE->setShaderObj(tessEShader);
+  geom->setShaderObj(geomShader);
+  vert->setCompiled(true);
+  frag->setCompiled(true);
+  tessC->setCompiled(true);
+  tessE->setCompiled(true);
+  geom->setCompiled(true);
   return program;
 }
 
@@ -226,47 +266,65 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag,Shader* tessC,Shader* tes
   GLuint compShader;
   GLuint program;
   // create and compile vert shader
-  vertShader = glCreateShader(GL_VERTEX_SHADER);
-  const GLchar* vertSource = vert->getSource();
-  const GLint vertLength = vert->getBytes();
-  glShaderSource(vertShader,1,&vertSource,&vertLength);
-  glCompileShader(vertShader);
-  checkCompileLog(vertShader);
+  if(vert->getCompiled()) vertShader = vert->getShaderObj();
+  else {
+    vertShader = glCreateShader(GL_VERTEX_SHADER);
+    const GLchar* vertSource = vert->getSource();
+    const GLint vertLength = vert->getBytes();
+    glShaderSource(vertShader,1,&vertSource,&vertLength);
+    glCompileShader(vertShader);
+    checkCompileLog(vertShader);
+  }
   // create and compile frag shader
-  fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-  const GLchar* fragSource = frag->getSource();
-  const GLint fragLength = frag->getBytes();
-  glShaderSource(fragShader,1,&fragSource,&fragLength);
-  glCompileShader(fragShader);
-  checkCompileLog(fragShader);
+  if(frag->getCompiled()) fragShader = frag->getShaderObj();
+  else {
+    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+    const GLchar* fragSource = frag->getSource();
+    const GLint fragLength = frag->getBytes();
+    glShaderSource(fragShader,1,&fragSource,&fragLength);
+    glCompileShader(fragShader);
+    checkCompileLog(fragShader);
+  }
   // create and compile tessC shader
-  tessCShader = glCreateShader(GL_TESS_CONTROL_SHADER);
-  const GLchar* tessCSource = tessC->getSource();
-  const GLint tessCLength = tessC->getBytes();
-  glShaderSource(tessCShader,1,&tessCSource,&tessCLength);
-  glCompileShader(tessCShader);
-  checkCompileLog(tessCShader);
+  if(tessC->getCompiled()) tessCShader = tessC->getShaderObj();
+  else {
+    tessCShader = glCreateShader(GL_TESS_CONTROL_SHADER);
+    const GLchar* tessCSource = tessC->getSource();
+    const GLint tessCLength = tessC->getBytes();
+    glShaderSource(tessCShader,1,&tessCSource,&tessCLength);
+    glCompileShader(tessCShader);
+    checkCompileLog(tessCShader);
+  }
   // create and compile tessE shader
-  tessEShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
-  const GLchar* tessESource = tessE->getSource();
-  const GLint tessELength = tessE->getBytes();
-  glShaderSource(tessEShader,1,&tessESource,&tessELength);
-  glCompileShader(tessEShader);
-  checkCompileLog(tessEShader);
+  if(tessE->getCompiled()) tessEShader = tessE->getShaderObj();
+  else {
+    tessEShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
+    const GLchar* tessESource = tessE->getSource();
+    const GLint tessELength = tessE->getBytes();
+    glShaderSource(tessEShader,1,&tessESource,&tessELength);
+    glCompileShader(tessEShader);
+    checkCompileLog(tessEShader);
+  }
   // create and compile geom shader
-  geomShader = glCreateShader(GL_GEOMETRY_SHADER);
-  const GLchar* geomSource = geom->getSource();
-  const GLint geomLength = geom->getBytes();
-  glShaderSource(geomShader,1,&geomSource,&geomLength);
-  glCompileShader(geomShader);
-  checkCompileLog(geomShader);
+  if(geom->getCompiled()) geomShader = geom->getShaderObj();
+  else {
+    geomShader = glCreateShader(GL_GEOMETRY_SHADER);
+    const GLchar* geomSource = geom->getSource();
+    const GLint geomLength = geom->getBytes();
+    glShaderSource(geomShader,1,&geomSource,&geomLength);
+    glCompileShader(geomShader);
+    checkCompileLog(geomShader);
+  }
   // create and compile comp shader
-  compShader = glCreateShader(GL_GEOMETRY_SHADER);
-  const GLchar* compSource = comp->getSource();
-  const GLint compLength = comp->getBytes();
-  glShaderSource(compShader,1,&compSource,&compLength);
-  glCompileShader(compShader);
-  checkCompileLog(compShader);
+  if(comp->getCompiled()) compShader = comp->getShaderObj();
+  else {
+    compShader = glCreateShader(GL_GEOMETRY_SHADER);
+    const GLchar* compSource = comp->getSource();
+    const GLint compLength = comp->getBytes();
+    glShaderSource(compShader,1,&compSource,&compLength);
+    glCompileShader(compShader);
+    checkCompileLog(compShader);
+  }
   // create program, attach it, and link
   program = glCreateProgram();
   glAttachShader(program,vertShader);
@@ -281,6 +339,14 @@ GLuint Shader::compileShader(Shader* vert,Shader* frag,Shader* tessC,Shader* tes
   frag->setShaderObj(fragShader);
   tessC->setShaderObj(tessCShader);
   tessE->setShaderObj(tessEShader);
+  geom->setShaderObj(geomShader);
+  comp->setShaderObj(compShader);
+  vert->setCompiled(true);
+  frag->setCompiled(true);
+  tessC->setCompiled(true);
+  tessE->setCompiled(true);
+  geom->setCompiled(true);
+  comp->setCompiled(true);
   return program;
 }
 
@@ -303,5 +369,7 @@ void Shader::checkCompileLog(const GLuint shader) {
 GLuint Shader::getShaderObj() const { return shaderObj; }
 GLchar* Shader::getSource() const { return source; }
 GLint Shader::getBytes() const { return bytes; }
+bool Shader::getCompiled() const { return compiled; }
 
 void Shader::setShaderObj(int param) { shaderObj = param; }
+void Shader::setCompiled(bool param) { compiled = param; }

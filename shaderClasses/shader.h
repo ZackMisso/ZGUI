@@ -11,6 +11,7 @@ private:
   GLint bytes;
   GLchar* source;
   GLuint shaderObj;
+  bool compiled;
 public:
   Shader(GLenum type,int len,const char* s);
   Shader(GLenum type);
@@ -27,8 +28,10 @@ public:
   GLuint getShaderObj() const;
   GLchar* getSource() const;
   GLint getBytes() const;
+  bool getCompiled() const;
   // setter methods
   void setShaderObj(GLint param);
+  void setCompiled(bool param);
 };
 
 #endif
