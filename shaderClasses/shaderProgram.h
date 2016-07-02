@@ -21,8 +21,8 @@ public:
   ShaderProgram();
   ~ShaderProgram();
   void compileAndLink();
-  void deleteShaders();
-  void detachProgram();
+  void detachShaders();
+  void deleteProgram();
   void programOwnsShaders(bool param);
   // getter methods
   VertShader* getVert();

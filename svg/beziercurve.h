@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/vec2.hpp>
-#include "array.h"
+#include "../datastructures/array.h"
 
 using namespace glm;
 
@@ -18,7 +18,7 @@ public:
   ~BezierCurve();
   Array<vec2>* getCurve();
   // class methods
-  static evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluatedPoints,const bool& wrap) const;
+  static void evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluatedPoints,const bool& wrap);
   // getter methods
   Array<vec2>* getControlPoints() const;
   bool getContinuous() const;

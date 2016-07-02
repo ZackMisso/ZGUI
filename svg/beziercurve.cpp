@@ -1,6 +1,7 @@
 #include "bezierCurve.h"
 #include "../globalInclude.h"
 #include "combinationcache.h"
+#include <tgmath.h>
 
 BezierCurve::BezierCurve() {
   controlPoints = new Array<vec2>();
@@ -24,12 +25,12 @@ Array<vec2>* BezierCurve::getCurve() {
   return curve;
 }
 
-void BezierCurve::evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluatedPoints,const bool& wrap) const {
+void BezierCurve::evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluatedPoints,const bool& wrap) {
   int numCtlPts = ctrlPts.getSize();
   if(numCtlPts <= 2) {
     // do linear curve case
     for(int i=0;i<numCtlPts;i++)
-      evaluatedPoints->add(ctrlPts->get(i));
+      evaluatedPoints->add(ctrlPts.get(i));
     return;
   }
   else {
@@ -47,8 +48,8 @@ void BezierCurve::evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluate
         // TODO :: Make a HashMap for powf results
         float tmp = powf(pos,(float)j) * powf(ompos,(float)n-j);
         tmp *= cc->getCombination(n,j);
-        ypos += tmp * ctrlPts[j].y;
-        xpos += tmp * ctrlPts[j].x;
+        ypos += tmp * ctrlPts.get(j).y;
+        xpos += tmp * ctrlPts.get(j).x;
       }
       evaluatedPoints->add(vec2(xpos,ypos));
     }

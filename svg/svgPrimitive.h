@@ -4,6 +4,8 @@
 
 #include <glm/vec2.hpp>
 #include "../dataStructures/rect.h"
+#include "../shaderClasses/fragShader.h"
+#include "../shaderClasses/vertShader.h"
 
 using namespace glm;
 

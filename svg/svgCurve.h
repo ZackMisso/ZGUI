@@ -1,7 +1,7 @@
 #pragma once
 
 #include "svgPrimitive.h"
-#include "../dataStructures/bezierCurve.h"
+#include "bezierCurve.h"
 
 class SVGCurve : public SVGPrimitive {
 private:

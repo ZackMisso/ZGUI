@@ -48,7 +48,7 @@ void ShaderProgram::compileAndLink() {
       const GLint vertLength = vert->getBytes();
       glShaderSource(vertShader,1,&vertSource,&vertLength);
       glCompileShader(vertShader);
-      checkCompileLog(vertShader);
+      Shader::checkCompileLog(vertShader);
       vert->setCompiled(true);
     }
   }
@@ -61,7 +61,7 @@ void ShaderProgram::compileAndLink() {
       const GLint fragLength = frag->getBytes();
       glShaderSource(fragShader,1,&fragSource,&fragLength);
       glCompileShader(fragShader);
-      checkCompileLog(fragShader);
+      Shader::checkCompileLog(fragShader);
       frag->setCompiled(true);
     }
   }
@@ -74,7 +74,7 @@ void ShaderProgram::compileAndLink() {
       const GLint tessCLength = tessC->getBytes();
       glShaderSource(tessCShader,1,&tessCSource,&tessCLength);
       glCompileShader(tessCShader);
-      checkCompileLog(tessCShader);
+      Shader::checkCompileLog(tessCShader);
       tessC->setCompiled(true);
     }
   }
@@ -87,7 +87,7 @@ void ShaderProgram::compileAndLink() {
       const GLint tessELength = tessE->getBytes();
       glShaderSource(tessEShader,1,&tessESource,&tessELength);
       glCompileShader(tessEShader);
-      checkCompileLog(tessEShader);
+      Shader::checkCompileLog(tessEShader);
       tessE->setCompiled(true);
     }
   }
@@ -100,7 +100,7 @@ void ShaderProgram::compileAndLink() {
       const GLint geomLength = geom->getBytes();
       glShaderSource(geomShader,1,&geomSource,&geomLength);
       glCompileShader(geomShader);
-      checkCompileLog(geomShader);
+      Shader::checkCompileLog(geomShader);
       geom->setCompiled(true);
     }
   }
@@ -113,7 +113,7 @@ void ShaderProgram::compileAndLink() {
       const GLint compLength = comp->getBytes();
       glShaderSource(compShader,1,&compSource,&compLength);
       glCompileShader(compShader);
-      checkCompileLog(compShader);
+      Shader::checkCompileLog(compShader);
       comp->setCompiled(true);
     }
   }

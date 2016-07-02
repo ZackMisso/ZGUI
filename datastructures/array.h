@@ -42,7 +42,7 @@ public:
 		}
 	}
 
-	int getSize() {
+	int getSize() const {
 		return size;
 	}
 
@@ -72,7 +72,7 @@ public:
 		return replaced;
 	}
 
-	int indexOf(T val) {
+	int indexOf(T val) const {
 		for(int i=0;i<size;i++)
 			if(ary[i]==val)
 				return i;
@@ -97,11 +97,11 @@ public:
 		return replaced;
 	}
 
-	T get(int ind) {
+	T get(int ind) const {
 		return ary[ind];
 	}
 
-	bool contains(T val) {
+	bool contains(T val) const {
 		for(int i=0;i<size;i++)
 			if(ary[i]==val)
 				return true;

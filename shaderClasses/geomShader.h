@@ -2,7 +2,7 @@
 
 #include "shader.h"
 
-class TessEShader : public Shader {
+class GeomShader : public Shader {
 public:
   GeomShader(int len,const char* s);
   GeomShader();
