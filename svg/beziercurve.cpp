@@ -56,6 +56,13 @@ void BezierCurve::evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluate
   }
 }
 
+BezierCurve* BezierCurve::createCurveAndCopy(Array<vec2>* control,Array<vec2>* pts) {
+  BezierCurve* newCurve = new BezierCurve();
+  for(int i=0;i<control->getSize();i++) newCurve->controlPoints->add(control->get(i));
+  for(int i=0;i<pts->getSize();i++) newCurve->curve->add(control->get(i));
+  return newCurve;
+}
+
 BezierCurve::~BezierCurve() {
   while(controlPoints->getSize())
     controlPoints->removeLast();
@@ -63,9 +70,5 @@ BezierCurve::~BezierCurve() {
 }
 
 Array<vec2>* BezierCurve::getControlPoints() const { return controlPoints; }
-bool BezierCurve::getContinuous() const { return continuous; }
-bool BezierCurve::getWrapAround() const { return wrapAround; }
 
 void BezierCurve::setControlPoints(Array<vec2>* param) { controlPoints = param; }
-void BezierCurve::setContinuous(bool param) { continuous = param; }
-void BezierCurve::setWrapAround(bool param) { wrapAround = param; }

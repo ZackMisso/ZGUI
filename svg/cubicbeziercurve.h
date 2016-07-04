@@ -18,6 +18,7 @@ public:
   Array<vec2>* getCurve();
   // class methods
   static void evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluatedPts,const bool& wrap);
+  static CubicBezierCurve* createCurveAndCopy(Array<vec2>* controls,Array<vec2>* pts);
   // setter methods
   void setControlPoints(Array<vec2>* param);
 };

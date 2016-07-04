@@ -17,14 +17,12 @@ public:
   BezierCurve(Array<vec2>* pts);
   ~BezierCurve();
   Array<vec2>* getCurve();
+  void setProperties(bool wrap,bool cont);
   // class methods
   static void evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluatedPoints,const bool& wrap);
+  static BezierCurve* createCurveAndCopy(Array<vec2>* control,Array<vec2>* pts);
   // getter methods
   Array<vec2>* getControlPoints() const;
-  bool getContinuous() const;
-  bool getWrapAround() const;
   // setter methods
   void setControlPoints(Array<vec2>* param);
-  void setContinuous(bool param);
-  void setWrapAround(bool param);
 };

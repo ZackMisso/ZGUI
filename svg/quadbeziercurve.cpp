@@ -21,4 +21,11 @@ void QuadBezierCurve::evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>& eval
   // to be implemented
 }
 
+QuadBezierCurve* QuadBezierCurve::createCurveAndCopy(Array<vec2>* control,Array<vec2>* pts) {
+  QuadBezierCurve* newCurve = new QuadBezierCurve();
+  for(int i=0;i<control->getSize();i++) newCurve->controlPoints->add(control->get(i));
+  for(int i=0;i<pts->getSize();i++) newCurve->curve->add(pts->get(i));
+  return newCurve;
+}
+
 void QuadBezierCurve::setControlPoints(Array<vec2>* param) { controlPoints = param; }
