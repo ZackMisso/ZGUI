@@ -4,6 +4,7 @@
 #include "../../svg/svgo.h"
 #include "../../svg/svgPrimitive.h"
 #include "../../dataStructures/array.h"
+#include "selectionRect.h"
 #include <glm/vec2.hpp>
 
 enum EditMode {
@@ -20,12 +21,14 @@ class SVGOEController {
 private:
   Array<SVGObject*>* objects;
   Array<SVGPrimitive*>* currentPrimitives;
+  SelectionRect* selectionRect;
   int currentObj;
   int currentPrimitive;
   double mouseX;
   double mouseY;
   EditMode editMode;
   EditData* editorData;
+  bool selecting;
   //void renderCurrentObject();
   void switchMode(int key);
   void switchToEmpty();

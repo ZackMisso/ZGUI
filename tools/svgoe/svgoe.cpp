@@ -45,10 +45,12 @@ void keyboard(GLFWwindow* window,int key,int scancode,int action,int mods) {
 }
 
 void mouseMove(GLFWwindow* window,double x,double y) {
+  //cout << "Updating Pos: " << x << "," << y << endl;
   controller->updateMousePosition(x,y);
 }
 
 void mouseClick(GLFWwindow* window,int button,int action,int mods) {
+  //cout << "Mouse Click" << endl;
   controller->handleClick();
 }
 

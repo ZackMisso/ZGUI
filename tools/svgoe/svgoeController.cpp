@@ -10,14 +10,16 @@
 SVGOEController::SVGOEController() {
   objects = new Array<SVGObject*>();
   currentPrimitives = new Array<SVGPrimitive*>();
+  selectionRect = new SelectionRect();
   currentObj = 0;
   currentPrimitive = 0;
   mouseX = 0.0;
   mouseY = 0.0;
-  editMode = EMPTY;
+  editMode = EDITING_CURVE;
   editorData = 0x0;
   currentPrimitives->add(new SVGLine());
   currentPrimitives->get(0)->initializeBasic();
+  selecting = false;
 }
 
 SVGOEController::~SVGOEController() {
@@ -70,6 +72,7 @@ void SVGOEController::render() {
     }
     default: break;
   }
+  if(selecting) selectionRect->render();
   //currentObj->render();
   currentPrimitives->get(currentPrimitive)->render();
 }
