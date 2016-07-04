@@ -1,7 +1,8 @@
 #include "svgCurve.h"
+#include "arbbeziercurve.h"
 
 SVGCurve::SVGCurve() {
-  curve = new BezierCurve();
+  curve = new ArbBezierCurve();
 }
 
 SVGCurve::~SVGCurve() {
@@ -33,8 +34,7 @@ void SVGCurve::calculateBB() {
 void SVGCurve::initializeBasic() {
   curve->getControlPoints()->add(vec2(-0.25,0));
   curve->getControlPoints()->add(vec2(0.25,0));
-  curve->setWrapAround(true);
-  curve->setContinuous(true);
+  curve->setProperties(true,true);
 }
 
 void SVGCurve::setUpRendering() {

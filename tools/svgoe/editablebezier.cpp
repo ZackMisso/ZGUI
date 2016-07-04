@@ -1,4 +1,4 @@
-#include "editablebeziercurve.h"
+#include "editablebezier.h"
 
 EditableBezierCurve::EditableBezierCurve() {
   controlPoints = new Array<vec2>();
@@ -48,7 +48,9 @@ QuadBezierCurve* EditableBezierCurve::getQuadraticCurve() {
       dirty = false;
     }
   }
-  return QuadBezierCurve::createCurveAndCopy(controlPts,curve);
+  QuadBezierCurve* newCurve = new QuadBezierCurve();
+  BezierCurve::createCurveAndCopy(controlPts,curve,newCurve);
+  return newCurve;
 }
 
 CubicBezierCurve* EditableBezierCurve::getCubicCurve() {
@@ -62,10 +64,12 @@ CubicBezierCurve* EditableBezierCurve::getCubicCurve() {
       dirty = false;
     }
   }
-  return CubicBezierCurve::createCurveAndCopy(controlPts,curve);
+  CubicBezierCurve newCurve = new CubicBezierCurve();
+  BezierCurve::copyIntoCurve(controlPts,curve,newCurve);
+  return newCurve;
 }
 
-BezierCurve* EditableBezierCurve::getArbitraryCurve() {
+ArbBezierCurve* EditableBezierCurve::getArbitraryCurve() {
   if(mode != EDITBEZ_ARBITRARY) {
     calculateArbitraryCurve();
     dirty = false;
@@ -76,5 +80,7 @@ BezierCurve* EditableBezierCurve::getArbitraryCurve() {
       dirty = false;
     }
   }
-  return BezierCurve::createCurveAndCopy(controlPts,curve);
+  ArbBezierCurve* newCurve = new ArbBezierCurve();
+  BezierCurve::createCurveAndCopy(controlPts,curve,newCurve);
+  return newCurve;
 }

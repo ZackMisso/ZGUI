@@ -5,6 +5,8 @@
 #include "../../shaderClasses/fragShader.h"
 #include "../../shaderClasses/vertShader.h"
 
+using namespace glm;
+
 class SelectionRect {
 private:
   FragShader* frag;
@@ -22,4 +24,4 @@ public:
   void turnOn();
   void turnOff();
   void render();
-}
+};

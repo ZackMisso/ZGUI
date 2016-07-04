@@ -7,7 +7,6 @@ EditableObject::EditableObject() {
 }
 
 EditableObject::~EditableObject() {
-  while(selectedPoints->getSize) selectedPoints->removeLast();
   delete selectedPoints;
   delete selectedFrag;
   delete selectedVert;

@@ -1,28 +1,28 @@
 #pragma once
 
+#include "../dataStructures/array.h"
 #include <glm/vec2.hpp>
-#include "../datastructures/array.h"
 
 using namespace glm;
 
 class BezierCurve {
-private:
+protected:
   Array<vec2>* controlPoints;
   Array<vec2>* curve;
-  bool continuous; // what is this used for?
-  bool wrapAround; // both of these seem the same...
+  bool continuous;
+  bool wrapAround;
   bool dirty;
 public:
   BezierCurve();
   BezierCurve(Array<vec2>* pts);
   ~BezierCurve();
-  Array<vec2>* getCurve();
   void setProperties(bool wrap,bool cont);
+  virtual void evaluateCurve() = 0;
+  Array<vec2>* getCurve();
   // class methods
-  static void evaluateCurve(const Array<vec2>& ctrlPts,Array<vec2>* evaluatedPoints,const bool& wrap);
-  static BezierCurve* createCurveAndCopy(Array<vec2>* control,Array<vec2>* pts);
+  static void copyIntoCurve(const Array<vec2>* control,const Array<vec2>* pts,BezierCurve* bCurve);
   // getter methods
-  Array<vec2>* getControlPoints() const;
+  Array<vec2>* getControlPoints();
   // setter methods
   void setControlPoints(Array<vec2>* param);
 };

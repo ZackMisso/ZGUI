@@ -2,7 +2,7 @@
 
 #include "editableObject.h"
 #include "../../datastructures/array.h"
-#include "../../svg/beziercurve.h"
+#include "../../svg/arbbeziercurve.h"
 #include "../../svg/quadbeziercurve.h"
 #include "../../svg/cubicbeziercurve.h"
 #include <glm/vec2.hpp>
@@ -30,7 +30,7 @@ public:
   void calculateCubicCurve();
   QuadBezierCurve* getQuadraticCurve();
   CubicBezierCurve* getCubicCurve();
-  BezierCurve* getArbitraryCurve();
+  ArbBezierCurve* getArbitraryCurve();
   // Editable Object Methods
    
 }
